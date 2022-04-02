@@ -1,7 +1,7 @@
 ---
 - name: "Download Elasticsearch's deb"
   get_url:
-    url: "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{{ elasticsearch_version }}-amd64.deb"
+    url: "http://vianor-samara.ru/elasticsearch/elasticsearch/elasticsearch-{{ elasticsearch_version }}-amd64.deb"
     dest: "files/elasticsearch-{{ elasticsearch_version }}-amd64.deb"
     validate_certs: false
   delegate_to: localhost
