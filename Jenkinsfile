@@ -1,28 +1,21 @@
 pipeline {
-    agent {
-        label 'linux'
+    agent{
+        label 'ansible'
     }
-    stages {
-        stage('checkout role'){
+    stages{
+        stage('checkout git'){
             steps{
-                dir('mnt-homeworks-ansible') {
-                    git branch: 'main', credentialsId: '2ae3ac29-908a-45f9-9cea-90d9ab9db609', url: 'git@github.com:netology-code/mnt-homeworks-ansible.git'
-                }
+                git branch: 'main', credentialsId: '23920420-e23b-464e-ba4a-bdc56cec9944', url: 'git@github.com:kostidan/mnt-homeworks-ansible.git'
             }
         }
-        stage('Install molecule') {
+        stage('install dependencies'){
             steps{
-                dir('mnt-homeworks-ansible'){
-                    sh 'pip3 install -r test-requirements.txt'
-                }
-                sh "echo =============="
+                sh 'pip3 install -r test-requirements.txt'
             }
         }
-        stage('Run Molecule'){
+        stage('run molecule'){
             steps{
-                dir('mnt-homeworks-ansible'){
-                    sh 'molecule test'
-                }
+                sh 'molecule test'
             }
         }
     }
